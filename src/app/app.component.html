@@ -3,5 +3,6 @@
 <!-- <app-my-first-component-ever title="Block_1" (buttonClicked)="handleBlockOne($event)"></app-my-first-component-ever>
 
 <app-my-first-component-ever title="Block_2" (buttonClicked)="handleBlockTwo($event)"></app-my-first-component-ever> -->
-
-<app-student *ngFor="let student of students" [student]="student"></app-student>
+<div style="display: grid; grid-template-columns: repeat(5, 350px); gap: 20px" > 
+<app-student *ngFor="let student of students" [student]="student" ></app-student>
+</div>

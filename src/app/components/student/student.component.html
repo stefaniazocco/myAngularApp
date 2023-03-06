@@ -1,4 +1,4 @@
-<div *ngIf="student">
+<div *ngIf="student" [ngStyle]="{'background-color': student.genere === 'M' ? 'lightblue' : 'lightpink' }" style="height :450px; padding: 20px">
     <p>{{student.nome + " " + student.cognome + "(" + student.eta + ")"}}</p>
     <p>
         <span *ngIf="student.genere === 'M'; else womanTemplate">
@@ -18,8 +18,8 @@
         <li *ngFor="let lang of student.lingue">{{lang}}</li>
     </ul>
     <h5>animali domestici? 
-        <span *ngIg="student.hasPets; else noPetsTemplate">
-            <i clas="fa-solid fa-check" style="color: greenyellow"></i>
+        <span *ngIf="student.hasPets; else noPetsTemplate">
+            <i class="fa-solid fa-check" style="color: green"></i>
         </span>
         <ng-template #noPetsTemplate>
             <i class="fa-solid fa-xmark" style="color:red"></i>
