@@ -1,0 +1,28 @@
+<div *ngIf="student">
+    <p>{{student.nome + " " + student.cognome + "(" + student.eta + ")"}}</p>
+    <p>
+        <span *ngIf="student.genere === 'M'; else womanTemplate">
+            <i class=" fa-solid fa-mars" ></i>uomo
+        </span>
+        <ng-template #womanTemplate>
+            <i class=" fa-solid fa-venus" ></i>donna
+        </ng-template>
+    </p>
+    <p>{{student.citta}}</p>
+    <h5>hobbies</h5>
+    <ul>
+        <li *ngFor="let hobby of student.hobbies">{{hobby}}</li>
+    </ul>
+    <h5>lingue</h5>
+    <ul>
+        <li *ngFor="let lang of student.lingue">{{lang}}</li>
+    </ul>
+    <h5>animali domestici? 
+        <span *ngIg="student.hasPets; else noPetsTemplate">
+            <i clas="fa-solid fa-check" style="color: greenyellow"></i>
+        </span>
+        <ng-template #noPetsTemplate>
+            <i class="fa-solid fa-xmark" style="color:red"></i>
+        </ng-template>
+    </h5>
+</div>
