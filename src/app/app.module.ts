@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyFirstComponentEverComponent } from './components/my-first-component-ever/my-first-component-ever.component';
 import { StudentComponent } from './components/student/student.component';
+import { HobbyComponent } from './components/hobby/hobby.component';
+import { LanguageComponent } from './components/language/language.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyFirstComponentEverComponent,
-    StudentComponent
+    StudentComponent,
+    HobbyComponent,
+    LanguageComponent
   ],
   imports: [
     BrowserModule,
