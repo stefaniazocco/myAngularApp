@@ -1,0 +1,44 @@
+<div class="d-flex flex-column">
+    <h4 *ngIf="student; else addStudentTemplate">Modifica studente {{student.nome + ' ' + student.cognome}}</h4>
+    <ng-template #addStudentTemplate> <h4>Aggiungi nuovo studente</h4></ng-template>
+
+    <br/>
+    
+    Nome
+    <input type="text" matInput [ngModel]="nome" [(ngModel)]="nome"/>
+    Cognome
+    <input type="text" matInput [ngModel]="cognome" [(ngModel)]="cognome"/>
+    Età
+    <input type="number" matInput [(ngModel)]="eta" min="19" max="99"/>
+    Genere
+    <select [(ngModel)]="genere">
+        <option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</option>
+    </select>
+    Città
+    <input type="text" matInput [(ngModel)]="citta" />
+    <p>Animali domestici?<mat-checkbox [(ngModel)]="animali"></mat-checkbox></p>
+    <div>
+        <div class="d-flex">
+            <p>Hobbies</p>
+            <button type="button" mat-stroked-button color="primary" (click)="addHobby()"> add hobby</button>
+        </div>
+        <div *ngFor="let hobby of hobbies; let index= index" class="d-flex flex-column">
+            <input type="text" matInput [(ngModel)]="hobbies[index].name" placeholder="Nome" />
+            <input type="text" matInput [(ngModel)]="hobbies[index].icon" placeholder="Icona" />
+        </div>
+    </div>
+    <div>
+        <div class="d-flex">
+            <p>Lingue</p>
+            <button type="button" mat-stroked-button color="primary" (click)="addLanguage()"> add hobby</button>
+        </div>
+        <div *ngFor="let lang of lingue; let index= index" class="d-flex flex-column">
+            <input type="text" matInput [(ngModel)]="lingue[index].name" placeholder="Nome" />
+            <input type="text" matInput [(ngModel)]="lingue[index].icon" placeholder="Icona" />
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="button"  mat-stroked-button color="primary" (click)="saveChanges()">SAVE</button>
+    </div>
+</div>

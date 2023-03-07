@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { STUDENTS } from './data/students';
+import { Student } from './models/student.type';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,10 @@ export class AppComponent {
     setTimeout(() => {
       alert(text);
     }, 3000);
+  }
+  
+  addStudent(newStudent: Student):void{
+    this.students.push(newStudent)
   }
 
 }

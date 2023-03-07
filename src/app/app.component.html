@@ -1,12 +1,19 @@
-<div class="bg-dark d-flex flex-column">
-    <h1 [innerText]="title" style="display: block; margin-bottom: 2rem; color: white; align-self: center; margin-top: 20px;"></h1>
+<!-- <div class="bg-dark d-flex flex-column">  
+    <app-my-first-component-ever title="Block_1" (buttonClicked)="handleBlockOne($event)"></app-my-first-component-ever>
+<app-my-first-component-ever title="Block_2" (buttonClicked)="handleBlockTwo($event)"></app-my-first-component-ever> 
 
-    <!-- <app-my-first-component-ever title="Block_1" (buttonClicked)="handleBlockOne($event)"></app-my-first-component-ever>
+</div> -->
 
-<app-my-first-component-ever title="Block_2" (buttonClicked)="handleBlockTwo($event)"></app-my-first-component-ever> -->
-
-    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0px 20px;">
-        <app-student *ngFor="let student of students; let odd = odd; let even = even" [student]="student"
-            [bgColor]="odd? 'hotpink' : 'orange'"></app-student>
-    </div>
-</div>
+<mat-sidenav-container class="w-100">
+    <mat-sidenav #sidenav mode="over" class="p-3" style="width: 400px">
+        <app-student-form></app-student-form>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3 bg-dark d-flex flex-column">
+        <h1 [innerText]="title" style="display: block; margin-bottom: 2rem; color: white; align-self: center; margin-top: 20px;"></h1>
+        <button type="button" (click)="sidenav.toggle()" style="width: fit-content; margin: 30px;">toggle panel</button>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0px 20px;">
+            <app-student *ngFor="let student of students; let odd = odd; let even = even; let index= index" [student]="student"
+                [bgColor]="odd? 'hotpink' : 'orange'"></app-student>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
