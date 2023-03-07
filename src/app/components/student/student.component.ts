@@ -8,4 +8,5 @@ import { Student } from 'src/app/models/student.type';
 })
 export class StudentComponent {
   @Input() student: Student | undefined;
+  @Input() bgColor: string | undefined;
 }
