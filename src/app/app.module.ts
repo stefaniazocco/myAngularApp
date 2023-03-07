@@ -7,6 +7,7 @@ import { MyFirstComponentEverComponent } from './components/my-first-component-e
 import { StudentComponent } from './components/student/student.component';
 import { HobbyComponent } from './components/hobby/hobby.component';
 import { LanguageComponent } from './components/language/language.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LanguageComponent } from './components/language/language.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

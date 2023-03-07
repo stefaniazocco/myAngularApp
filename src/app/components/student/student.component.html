@@ -1,20 +1,31 @@
 <div *ngIf="student" [ngStyle]="{'background-color': bgColor }" 
-    style="height :550px; padding-left: 15px; border: 2px solid black; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-evenly;">
+    style="height :500px; padding: 15px; border: 4px solid rgb(10, 132, 138); border-radius: 10px; display: flex; flex-direction: column;">
 
     <h4 style="align-self: center;">{{student.nome + " " + student.cognome + " (" + student.eta + ")"}}</h4>
-    <p>
+    <p style="align-self: center; margin: 0; line-height: 0;">
         <span *ngIf="student.genere === 'M'; else womanTemplate">
-            <i class=" fa-solid fa-mars" ></i>uomo
+            <i class=" fa-solid fa-mars" ></i>
         </span>
         <ng-template #womanTemplate>
-            <i class=" fa-solid fa-venus" ></i>donna
+            <i class=" fa-solid fa-venus" ></i>
         </ng-template>
+        <span> - {{student.citta}}</span>
     </p>
-    <p>{{student.citta}}</p>
+    
     <h5>hobbies</h5>
-        <app-hobby  *ngFor="let hobby of student.hobbies" [hobby]="hobby"></app-hobby>
+        <ul>
+            <li *ngFor="let hobby of student.hobbies">
+                <app-hobby  [hobby]="hobby"></app-hobby>
+            </li>
+        </ul>
+        
     <h5>lingue</h5>
-        <app-language *ngFor="let lang of student.lingue" [lang]="lang"></app-language>
+        <ul>
+            <li *ngFor="let lang of student.lingue">
+                <app-language  [lang]="lang"></app-language>
+            </li>
+        </ul>
+        
     <h5>animali domestici? 
         <span *ngIf="student.hasPets; else noPetsTemplate">
             <i class="fa-solid fa-check" style="color: green"></i>
