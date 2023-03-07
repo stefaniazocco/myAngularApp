@@ -10,18 +10,20 @@ import { Student } from './models/student.type';
 export class AppComponent {
   title = 'movie-app';
   students = structuredClone(STUDENTS);
-  
-  handleBlockOne( text: string): void{
-    alert(text);
-  }
-  handleBlockTwo( text: string): void{
-    setTimeout(() => {
-      alert(text);
-    }, 3000);
-  }
+  selectedStudent: Student |undefined;
   
   addStudent(newStudent: Student):void{
-    this.students.push(newStudent)
+    this.students.unshift(newStudent);
+    this.selectedStudent= undefined;
+  }
+  editStudent(student: Student): void {
+    this.selectedStudent = student
+  }
+  handleEditStudent(student: Student): void{
+    const studentIndex: number= this.students.findIndex((st: Student): boolean => st.nome === student.nome && st.cognome === student.cognome)
+    if(studentIndex >= 0) {
+      this.students.splice(studentIndex, 1, student);
+    } 
   }
 
 }

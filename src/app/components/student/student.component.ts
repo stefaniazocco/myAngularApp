@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Student } from 'src/app/models/student.type';
 
 @Component({
@@ -9,4 +9,5 @@ import { Student } from 'src/app/models/student.type';
 export class StudentComponent {
   @Input() student: Student | undefined;
   @Input() bgColor: string | undefined;
+  @Output() editStudent: EventEmitter<void> = new EventEmitter<void>();
 }

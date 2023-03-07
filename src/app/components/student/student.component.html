@@ -1,6 +1,11 @@
 <div *ngIf="student" [ngStyle]="{'background-color': bgColor }" 
-    style="height :500px; padding: 15px; border: 4px solid rgb(10, 132, 138); border-radius: 10px; display: flex; flex-direction: column;">
-
+    style="height :450px; padding: 15px; border: 4px solid rgb(10, 132, 138); border-radius: 10px; display: flex; flex-direction: column;">
+    
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 class="mb-0">Informazioni</h3>
+        <button type="button" mat-stroked-button (click)="editStudent.emit()">EDIT</button>
+    </div>
+    
     <h4 style="align-self: center;">{{student.nome + " " + student.cognome + " (" + student.eta + ")"}}</h4>
     <p style="align-self: center; margin: 0; line-height: 0;">
         <span *ngIf="student.genere === 'M'; else womanTemplate">
