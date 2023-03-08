@@ -15,8 +15,9 @@ import { LanguageComponent } from './components/language/language.component';
 import { MyFirstComponentEverComponent } from './components/my-first-component-ever/my-first-component-ever.component';
 import { StudentFormComponent } from './components/student-form/student-form.component';
 import { StudentComponent } from './components/student/student.component';
-import { Student } from './models/student.type';
+import { Student } from './models/student';
 import { STUDENTS } from './data/students';
+import { ExperienceComponent } from './components/experience/experience.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { STUDENTS } from './data/students';
     HobbyComponent,
     LanguageComponent,
     StudentFormComponent,
+    ExperienceComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,65 +1,72 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Hobby } from 'src/app/models/hobby';
 import { Language } from 'src/app/models/language';
-import { Student } from 'src/app/models/student.type';
+import { Student } from 'src/app/models/student';
+import { StudentExperience } from 'src/app/models/studentExperience';
 
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
   styleUrls: ['./student-form.component.scss']
 })
-export class StudentFormComponent implements OnInit {
+export class StudentFormComponent {
   @Input() student: Student | undefined;
+  @Input() mode: 'edit' | 'add' = 'edit';
   @Output() addStudent: EventEmitter<Student> = new EventEmitter<Student>();
   @Output() editStudent: EventEmitter<Student> = new EventEmitter<Student>();
 
-  mode: 'edit' | 'add' = 'add';
+  studentViewModel: Student = new Student();
   genderOptions = ["M", "F"];
 
-
-  ngOnInit() {
-    if (!this.student) {
-      this.student = this.createStudent();
+  ngOnChanges(changes: SimpleChanges):void {
+    if(changes['student'].currentValue){
+      this.studentViewModel= structuredClone(changes['student'].currentValue);
       this.addHobby();
       this.addLanguage();
-      this.mode = 'add';
+      this.addExperience();
     }
   }
-  addHobby() {
-    // if(this.student!.hobbies.some(hobby=>!hobby.name)){
-    //   return;
-    // }
-    this.student!.hobbies.push({ name: '', icon: '' })
+  addHobby():void {
+    if(this.studentViewModel.hobbies.some(hobby =>!hobby.name)){
+      return;
+    }
+    this.studentViewModel!.hobbies.push({ name: '', icon: '' })
   }
-  addLanguage() {
-    this.student!.lingue.push({ name: '', icon: '' })
+  addLanguage():void {
+    if(this.studentViewModel.lingue.some(lang =>!lang.name)){
+      return;
+    }
+    this.studentViewModel!.lingue.push({ name: '', icon: '' })
+  }
+  addExperience():void {
+    if(this.studentViewModel.esperienze.some(esp =>!esp.nome)){
+      return;
+    }
+    this.studentViewModel!.esperienze.push({ nome: '', descrizione: '', inizio: new Date(''), fine: new Date(''), tags: [] })
+  }
+  addTag(exp: StudentExperience) {
+    if(exp.tags.some(tag=>!tag)){
+      return;
+    }
+    exp.tags.push("")
   }
   saveChanges(): void {
-    this.student={
-      ... this.student,
-      hobbies: this.student!.hobbies.filter(hobby=>!!hobby.name),
-      lingue: this.student!.lingue.filter(language=>!!language.name)
+    this.studentViewModel = {
+      ... this.studentViewModel,
+      hobbies: this.studentViewModel!.hobbies.filter(hobby => !!hobby.name),
+      lingue: this.studentViewModel!.lingue.filter(language => !!language.name),
+      esperienze: this.studentViewModel!.esperienze.filter(exp => !!exp.nome).map(exp=>({
+        ...exp,
+        tags:exp.tags.filter(tag=> !!tag)
+      }))
     } as Student
     if (this.mode === 'add') {
-      this.addStudent.emit(this.student)
+      this.addStudent.emit(this.studentViewModel)
     } else {
-      this.editStudent.emit(this.student)
+      this.editStudent.emit(this.studentViewModel)
     }
   }
-
-  private createStudent(): Student {
-    return {
-      nome: '',
-      cognome: '',
-      eta: 19,
-      citta: '',
-      genere: '',
-      hasPets: false,
-      lingue: new Array<Language>,
-      hobbies: new Array<Hobby>,
-    };
-
-
-
+  tagsTrackByFn(ind: number) {
+    return ind;
   }
 }
