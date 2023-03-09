@@ -5,6 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatChipsModule} from '@angular/material/chips';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -40,6 +41,7 @@ import { ExperienceComponent } from './components/experience/experience.componen
     FormsModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

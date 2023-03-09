@@ -9,7 +9,7 @@ export const STUDENTS: Array<Student> = [
     eta: 28, 
     location: { citta: "Catania", cap: "1234", indirizzo: "wefaw", provincia: "Catania" },
     hobbies: [{ name: "Sport", icon: "medal" }, { name: "Cinema", icon: "film" }, { name: "Libri", icon: "book" }], hasPets: false,
-    lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }, { name: "Spangolo", icon: "sun" }],
+    lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }, { name: "Spagnolo", icon: "sun" }],
     esperienze: [{
       nome: "astronauta",
       descrizione: "nella stazione spaziale",
@@ -67,11 +67,11 @@ export const STUDENTS: Array<Student> = [
       hasPets: false,
       lingue: [{ name: "italiano", icon: "pizza-slice" }, { name: "inglese", icon: "flag-usa" }],
       esperienze: [{
-        nome: "ciao",
-        descrizione: "",
-        inizio: new Date(),
-        fine: new Date(),
-        tags: [""]
+        nome: "jr developer",
+        descrizione: "faccio siti meravigliosi",
+        inizio: new Date("2015-03-25"),
+        fine: new Date("2015-03-25"),
+        tags: ["siti", "web", "altro"]
       },]
   },
   ),
@@ -86,11 +86,11 @@ export const STUDENTS: Array<Student> = [
       hasPets: true,
       lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
       esperienze: [{
-        nome: "ciao",
-        descrizione: "",
-        inizio: new Date(),
-        fine: new Date(),
-        tags: [""]
+        nome: "jr developer",
+        descrizione: "faccio siti meravigliosi",
+        inizio: new Date("2015-03-25"),
+        fine: new Date("2015-03-25"),
+        tags: ["siti", "web", "altro"]
       },]
   },
   ),
@@ -116,11 +116,11 @@ export const STUDENTS: Array<Student> = [
           { name: "Francese", icon: "wine-glass" },
       ],
       esperienze: [{
-        nome: "ciao",
-        descrizione: "",
-        inizio: new Date(),
-        fine: new Date(),
-        tags: [""]
+        nome: "jr developer",
+        descrizione: "faccio siti meravigliosi",
+        inizio: new Date("2015-03-25"),
+        fine: new Date("2015-03-25"),
+        tags: ["siti", "web", "altro"]
       },]
   },
   ),
@@ -135,11 +135,11 @@ export const STUDENTS: Array<Student> = [
     hasPets: false,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
     esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
+      nome: "jr developer",
+      descrizione: "faccio siti meravigliosi",
+      inizio: new Date("2015-03-25"),
+      fine: new Date("2015-03-25"),
+      tags: ["siti", "web", "altro"]
     },]
   },
   ),
@@ -154,11 +154,11 @@ export const STUDENTS: Array<Student> = [
     hasPets: false,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
     esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
+      nome: "jr developer",
+      descrizione: "faccio siti meravigliosi",
+      inizio: new Date("2015-03-25"),
+      fine: new Date("2015-03-25"),
+      tags: ["siti", "web", "altro"]
     },]
   },
   ),
@@ -172,13 +172,7 @@ export const STUDENTS: Array<Student> = [
     hobbies: [{ name: "Gaming", icon: "gamepad" }, { name: "Giardinaggio", icon: "seedling" }],
     hasPets: true,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ),
   new Student(
@@ -191,13 +185,7 @@ export const STUDENTS: Array<Student> = [
     hobbies: [{ name: "Viaggiare", icon: "plane" }, { name: "Film", icon: "film" }],
     hasPets: true,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ),
   new Student(
@@ -210,13 +198,7 @@ export const STUDENTS: Array<Student> = [
     hobbies: [{ name: "Musica", icon: "music" }, { name: "Gaming", icon: "gamepad " }, { name: "Viaggi", icon: "plane" }],
     hasPets: false,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ),
   new Student(
@@ -229,13 +211,7 @@ export const STUDENTS: Array<Student> = [
     hobbies: [{ name: "Musica", icon: "music" }, { name: "Gaming", icon: "gamepad " }, { name: "Cooking", icon: "utensils" }],
     hasPets: true,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ),
   new Student(
@@ -248,13 +224,7 @@ export const STUDENTS: Array<Student> = [
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
     hasPets: true,
     hobbies: [{ name: "palestra", icon: "fa-duotone fa-dumbbell" }, { name: "Gaming", icon: "fa-sharp gamepad" }, { name: "leggere", icon: "book" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ), 
   new Student(
@@ -267,13 +237,7 @@ export const STUDENTS: Array<Student> = [
     hobbies: [{ name: "Sport", icon: "medal" }, { name: "Cinema", icon: "film" }, { name: "Musica", icon: "music" }],
     hasPets: false,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ),
   new Student(
@@ -286,13 +250,7 @@ export const STUDENTS: Array<Student> = [
     hobbies: [{ name: "Coding", icon: "plane" }, { name: "Jogging", icon: "film" }],
     hasPets: false,
     lingue: [{ name: "Italiano", icon: "pizza-slice" }, { name: "Inglese", icon: "flag-usa" }, { name: "Polacco", icon: "flag-usa" }],
-    esperienze: [{
-      nome: "ciao",
-      descrizione: "",
-      inizio: new Date(),
-      fine: new Date(),
-      tags: [""]
-    },]
+    esperienze: []
   },
   ),
 

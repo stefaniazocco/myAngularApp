@@ -1,5 +1,8 @@
 <div *ngIf="exper" style="margin-bottom: 15px;">
-    <p>{{exper.nome}} | {{exper.inizio | date: "dd/MM/yyyy"}} - {{exper.fine | date: "dd/MM/yyyy"}}</p>
+    <p>{{exper.nome}}</p>
+    <p>{{exper.inizio | date: "dd/MM/yyyy"}} - {{exper.fine | date: "dd/MM/yyyy"}}</p>
     <p>{{exper.descrizione}}</p>
-    <span *ngFor="let mytag of exper.tags; let i=index">{{mytag}} </span>
+    <mat-chip-set>
+        <mat-chip *ngFor="let mytag of exper.tags; let i=index" style="background-color: rgba(14, 153, 184, 0.612);">{{mytag}} </mat-chip>
+    </mat-chip-set>
 </div>

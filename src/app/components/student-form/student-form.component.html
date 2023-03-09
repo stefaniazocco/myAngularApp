@@ -1,18 +1,18 @@
-<div class="d-flex flex-column" *ngIf="studentViewModel">
-    <h4 *ngIf="mode ==='edit'; else addStudentTemplate" style="font-size: 30px;">Modifica studente
+<div class="d-flex flex-column" *ngIf="studentViewModel" style="color:white">
+    <h4 *ngIf="mode ==='edit'; else addStudentTemplate" style="font-size: 30px; color: white;">Modifica studente
         {{studentViewModel.nome + ' ' +
         studentViewModel.cognome}}</h4>
     <ng-template #addStudentTemplate>
-        <h4 style="font-size: 30px;">Aggiungi nuovo studente</h4>
+        <h4 style="font-size: 30px;color: white">Aggiungi nuovo studente</h4>
     </ng-template>
 
     <br />
     <div class="d-flex flex-column mb-3">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
             <mat-label>Nome</mat-label>
             <input type="text" matInput [(ngModel)]="studentViewModel.nome" placeholder="Nome" />
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
             <mat-label>Cognome</mat-label>
             <input type="text" matInput [(ngModel)]="studentViewModel.cognome" placeholder="Cognome" />
         </mat-form-field>
@@ -20,14 +20,14 @@
     </div>
     <div class="row">
         <div class="col-6 d-flex flex-column mb-3">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Età</mat-label>
                 <input type="number" matInput [(ngModel)]="studentViewModel.eta" min="19" max="99" />
             </mat-form-field>
 
         </div>
         <div class="col-6 d-flex flex-column mb-3">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Select</mat-label>
                 <mat-select [(ngModel)]="studentViewModel.genere">
                     <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</mat-option>
@@ -38,56 +38,55 @@
     </div>
 
     <p>Location</p>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
         <mat-label>Città</mat-label>
         <input type="text" matInput [(ngModel)]="studentViewModel.location.citta" placeholder="Città" />
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
         <mat-label>Cap</mat-label>
         <input type="text" matInput [(ngModel)]="studentViewModel.location.cap" placeholder="Cap" />
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
         <mat-label>Indirizzo</mat-label>
         <input type="text" matInput [(ngModel)]="studentViewModel.location.indirizzo" placeholder="Indirizzo" />
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
         <mat-label>Provincia</mat-label>
         <input type="text" matInput [(ngModel)]="studentViewModel.location.provincia" placeholder="Provincia" />
     </mat-form-field>
+    <div style="background-color:white; width: fit-content; padding-right: 10px; border-radius: 10px;">
+        <mat-checkbox [(ngModel)]="studentViewModel.hasPets">Animali domestici?</mat-checkbox>
+    </div>
 
-
-    <mat-checkbox [(ngModel)]="studentViewModel.hasPets">Animali domestici?</mat-checkbox>
     <div class="mb-3 mt-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <p>Hobbies</p>
-            <button type="button" mat-stroked-button color="primary" style="background-color: white;"
+            <button type="button" mat-stroked-button color="primary" style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
                 (click)="addHobby()"><i class="fa-solid fa-plus"></i> add hobby</button>
         </div>
         <div *ngFor="let hobby of studentViewModel.hobbies; let index= index" class="d-flex flex-column mb-3">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Nome</mat-label>
                 <input type="text" matInput [(ngModel)]="studentViewModel.hobbies[index].name" placeholder="Nome" />
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Icona</mat-label>
                 <input type="text" matInput [(ngModel)]="studentViewModel.hobbies[index].icon" placeholder="Icona" />
             </mat-form-field>
-
-
         </div>
     </div>
     <div class="mb-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <p>Lingue</p>
-            <button type="button" mat-stroked-button color="primary" style="background-color: white;"
+            <button type="button" mat-stroked-button color="primary" style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
                 (click)="addLanguage()"> <i class="fa-solid fa-plus"></i>add hobby</button>
         </div>
         <div *ngFor="let lang of studentViewModel.lingue; let index= index" class="d-flex flex-column mb-3">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Nome</mat-label>
                 <input type="text" matInput [(ngModel)]="studentViewModel.lingue[index].name" placeholder="Nome" />
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Icona</mat-label>
                 <input type="text" matInput [(ngModel)]="studentViewModel.lingue[index].icon" placeholder="Icona" />
             </mat-form-field>
@@ -96,25 +95,25 @@
     <div class="mb-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <p>Esperienze</p>
-            <button type="button" mat-stroked-button color="primary" style="background-color: white;"
+            <button type="button" mat-stroked-button color="primary" style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
                 (click)="addExperience()"> <i class="fa-solid fa-plus"></i>add experience</button>
         </div>
         <div *ngFor="let exper of studentViewModel.esperienze; let index= index" class="d-flex flex-column">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Nome</mat-label>
                 <input type="text" matInput [(ngModel)]="studentViewModel.esperienze[index].nome" placeholder="Nome" />
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Descrizione</mat-label>
                 <textarea matNativeControl [(ngModel)]="studentViewModel.esperienze[index].descrizione"
                     placeholder="Descrizione"></textarea>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Data inizio</mat-label>
                 <input type="date" matInput [(ngModel)]="studentViewModel.esperienze[index].inizio" />
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Data fine</mat-label>
                 <input type="date" matInput [(ngModel)]="studentViewModel.esperienze[index].fine" />
             </mat-form-field>
@@ -122,10 +121,10 @@
 
 
             <button type="button" mat-stroked-button color="primary"
-                style="background-color: white; margin-bottom: 10px;" (click)="addTag(exper)"><i
+                style="background-color: rgba(109, 208, 244, 0.813); margin-bottom: 10px;  border: 2px solid blue;" (click)="addTag(exper)"><i
                     class="fa-solid fa-plus"></i> add tag</button>
             <div *ngFor="let mytag of exper.tags; let ind= index; trackBy: tagsTrackByFn" class="d-flex flex-column">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Data fine</mat-label>
                     <input type="text" matInput [(ngModel)]="studentViewModel.esperienze[index].tags[ind]"
                         placeholder="tag" />
@@ -138,6 +137,6 @@
 
     <div class="d-flex justify-content-center">
         <button type="button" mat-stroked-button color="primary"
-            style="background-color: orange; font-size: 30px; padding: 30px;" (click)="saveChanges()">SAVE</button>
+            style="background-color: orange; font-size: 30px; padding: 30px; border: 2px solid orangered;" (click)="saveChanges()">SAVE</button>
     </div>
 </div>

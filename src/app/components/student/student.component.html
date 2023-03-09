@@ -1,7 +1,7 @@
 <div *ngIf="student" [ngStyle]="{'background-color': bgColor }"
     style="min-height:600px; height: fit-content; padding: 15px; border: 4px solid rgb(10, 132, 138); border-radius: 10px; display: flex; flex-direction: column;">
 
-    <div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-2">Informazioni</h2>
         <button type="button" mat-raised-button style="background-color:rgb(238, 193, 29);"
             (click)="editStudent.emit()">EDIT</button>
@@ -20,17 +20,17 @@
     </p>
     <hr />
 
-    <h4>hobbies</h4>
+    <h4>HOBBIES</h4>
     <p *ngFor="let hobby of student.hobbies" style="margin-left: 20px;">
         <app-hobby [hobby]="hobby"></app-hobby>
     </p>
-    <h4>lingue</h4>
+    <h4>LINGUE</h4>
     <p *ngFor="let lang of student.lingue" style="margin-left: 20px;">
         <app-language [lang]="lang"></app-language>
     </p>
 
 
-    <h4>animali domestici?
+    <h4>ANIMALI?
         <span *ngIf="student.hasPets; else noPetsTemplate">
             <i class="fa-solid fa-check" style="color: green"></i>
         </span>
@@ -39,7 +39,7 @@
         </ng-template>
     </h4>
 
-    <h4>esperienze</h4>
+    <h4>ESPERIENZE LAVORATIVE</h4>
     
         <p *ngFor="let exper of student.esperienze" style="line-height: 5px; margin-left: 20px;">
             <app-experience [exper]="exper"></app-experience>
