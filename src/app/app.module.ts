@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HobbyComponent } from './components/hobby/hobby.component';
 import { LanguageComponent } from './components/language/language.component';
 import { MyFirstComponentEverComponent } from './components/my-first-component-ever/my-first-component-ever.component';
@@ -19,6 +19,7 @@ import { StudentComponent } from './components/student/student.component';
 import { Student } from './models/student';
 import { STUDENTS } from './data/students';
 import { ExperienceComponent } from './components/experience/experience.component';
+import { ReactiveStudentFormComponent } from './components/reactive-student-form/reactive-student-form.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ExperienceComponent } from './components/experience/experience.componen
     LanguageComponent,
     StudentFormComponent,
     ExperienceComponent,
+    ReactiveStudentFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { ExperienceComponent } from './components/experience/experience.componen
     FormsModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
