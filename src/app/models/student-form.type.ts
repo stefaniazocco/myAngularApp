@@ -19,7 +19,7 @@ export type StudentForm= {
   export type StudentFormGeneralInformationGender= 'M'|'F'|'';
 
   export type StudentFormGeneralInformationLocation = {
-    indirzzo: FormControl<string>;
+    indirizzo: FormControl<string>;
     citta: FormControl<string>;
     provincia:FormControl<string>;
     cap: FormControl<string>;

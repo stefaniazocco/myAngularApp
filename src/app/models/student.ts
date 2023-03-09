@@ -6,7 +6,7 @@ import { StudentLocation } from "./studentLocation";
 export interface IStudent {
     nome: string;
     cognome: string;
-    genere: string;
+    genere: "M" | "F" | "";
     eta: number;
     location: StudentLocation;
     hobbies:Array<Hobby>;
@@ -18,7 +18,7 @@ export interface IStudent {
 export class Student implements IStudent{
   nome: string;
   cognome: string;
-  genere: string;
+  genere: "M" | "F" | "";
   eta: number;
   location: StudentLocation;
   hobbies: Array<Hobby>;
@@ -32,10 +32,10 @@ export class Student implements IStudent{
     this.genere = student?.genere ?? "";
     this.eta= student?.eta ?? 19;
     this.location= student?.location ?? {citta: "", cap : "", indirizzo : "", provincia :"" };
-    this.hobbies= student?.hobbies ?? [];
+    this.hobbies= student?.hobbies ?? new Array<Hobby>();
     this.hasPets= student?.hasPets ?? false;
-    this.lingue= student?.lingue ?? [];
-    this.esperienze= student?.esperienze ?? []
+    this.lingue= student?.lingue ?? new Array<Language>();
+    this.esperienze= student?.esperienze ?? new Array<StudentExperience>();
   }
 
 }

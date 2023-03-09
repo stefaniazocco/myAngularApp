@@ -1,142 +1,165 @@
-<div class="d-flex flex-column" *ngIf="student" style="color:white">
+<div class="d-flex flex-column" *ngIf="form" style="color:white">
     <h4 *ngIf="mode ==='edit'; else addStudentTemplate" style="font-size: 30px; color: white;">Modifica studente
-        {{studentViewModel.nome + ' ' +
-        studentViewModel.cognome}}</h4>
+        {{student.nome + ' ' +
+        student.cognome}}</h4>
     <ng-template #addStudentTemplate>
         <h4 style="font-size: 30px;color: white">Aggiungi nuovo studente</h4>
     </ng-template>
 
     <br />
-    <div class="d-flex flex-column mb-3">
-        <mat-form-field appearance="fill">
-            <mat-label>Nome</mat-label>
-            <input type="text" matInput [formControl]="nome" placeholder="Nome" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Cognome</mat-label>
-            <input type="text" matInput [FormControl]="studentViewModel.cognome" placeholder="Cognome" />
-        </mat-form-field>
+    <form [formGroup]="form" (ngSubmit)="saveChanges()">
 
-    </div>
-    <div class="row">
-        <div class="col-6 d-flex flex-column mb-3">
-            <mat-form-field appearance="fill">
-                <mat-label>Età</mat-label>
-                <input type="number" matInput [FormControl]="studentViewModel.eta" min="19" max="99" />
-            </mat-form-field>
-
-        </div>
-        <div class="col-6 d-flex flex-column mb-3">
-            <mat-form-field appearance="fill">
-                <mat-label>Select</mat-label>
-                <mat-select [FormControl]="studentViewModel.genere">
-                    <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-        </div>
-    </div>
-
-    <p>Location</p>
-    <mat-form-field appearance="fill">
-        <mat-label>Città</mat-label>
-        <input type="text" matInput [FormControl]="studentViewModel.location.citta" placeholder="Città" />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Cap</mat-label>
-        <input type="text" matInput [FormControl]="studentViewModel.location.cap" placeholder="Cap" />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Indirizzo</mat-label>
-        <input type="text" matInput [FormControl]="studentViewModel.location.indirizzo" placeholder="Indirizzo" />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Provincia</mat-label>
-        <input type="text" matInput [FormControl]="studentViewModel.location.provincia" placeholder="Provincia" />
-    </mat-form-field>
-    <div style="background-color:white; width: fit-content; padding-right: 10px; border-radius: 10px;">
-        <mat-checkbox [FormControl]="studentViewModel.hasPets">Animali domestici?</mat-checkbox>
-    </div>
-
-    <div class="mb-3 mt-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <p>Hobbies</p>
-            <button type="button" mat-stroked-button color="primary" style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
-                (click)="addHobby()"><i class="fa-solid fa-plus"></i> add hobby</button>
-        </div>
-        <div *ngFor="let hobby of studentViewModel.hobbies; let index= index" class="d-flex flex-column mb-3">
-            <mat-form-field appearance="fill">
-                <mat-label>Nome</mat-label>
-                <input type="text" matInput [(ngModel)]="studentViewModel.hobbies[index].name" placeholder="Nome" />
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Icona</mat-label>
-                <input type="text" matInput [(ngModel)]="studentViewModel.hobbies[index].icon" placeholder="Icona" />
-            </mat-form-field>
-        </div>
-    </div>
-    <div class="mb-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <p>Lingue</p>
-            <button type="button" mat-stroked-button color="primary" style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
-                (click)="addLanguage()"> <i class="fa-solid fa-plus"></i>add hobby</button>
-        </div>
-        <div *ngFor="let lang of studentViewModel.lingue; let index= index" class="d-flex flex-column mb-3">
-            <mat-form-field appearance="fill">
-                <mat-label>Nome</mat-label>
-                <input type="text" matInput [(ngModel)]="studentViewModel.lingue[index].name" placeholder="Nome" />
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Icona</mat-label>
-                <input type="text" matInput [(ngModel)]="studentViewModel.lingue[index].icon" placeholder="Icona" />
-            </mat-form-field>
-        </div>
-    </div>
-    <div class="mb-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <p>Esperienze</p>
-            <button type="button" mat-stroked-button color="primary" style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
-                (click)="addExperience()"> <i class="fa-solid fa-plus"></i>add experience</button>
-        </div>
-        <div *ngFor="let exper of studentViewModel.esperienze; let index= index" class="d-flex flex-column">
-            <mat-form-field appearance="fill">
-                <mat-label>Nome</mat-label>
-                <input type="text" matInput [(ngModel)]="studentViewModel.esperienze[index].nome" placeholder="Nome" />
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Descrizione</mat-label>
-                <textarea matNativeControl [(ngModel)]="studentViewModel.esperienze[index].descrizione"
-                    placeholder="Descrizione"></textarea>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Data inizio</mat-label>
-                <input type="date" matInput [(ngModel)]="studentViewModel.esperienze[index].inizio" />
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Data fine</mat-label>
-                <input type="date" matInput [(ngModel)]="studentViewModel.esperienze[index].fine" />
-            </mat-form-field>
-
-
-
-            <button type="button" mat-stroked-button color="primary"
-                style="background-color: rgba(109, 208, 244, 0.813); margin-bottom: 10px;  border: 2px solid blue;" (click)="addTag(exper)"><i
-                    class="fa-solid fa-plus"></i> add tag</button>
-            <div *ngFor="let mytag of exper.tags; let ind= index; trackBy: tagsTrackByFn" class="d-flex flex-column">
+        <section formGroupName="general_information">
+            <article class="d-flex flex-column mb-3">
                 <mat-form-field appearance="fill">
-                    <mat-label>Data fine</mat-label>
-                    <input type="text" matInput [(ngModel)]="studentViewModel.esperienze[index].tags[ind]"
-                        placeholder="tag" />
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput formControlName="nome" placeholder="Nome" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Cognome</mat-label>
+                    <input type="text" matInput formControlName="cognome" placeholder="Cognome" />
                 </mat-form-field>
 
+            </article>
+            <article class="row">
+                <div class="col-6 d-flex flex-column mb-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Età</mat-label>
+                        <input type="number" matInput formControlName="eta" min="19" max="99" />
+                        <mat-hint>Min 19 - Max 99</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 d-flex flex-column mb-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Genere</mat-label>
+                        <mat-select formControlName="genere">
+                            <mat-option *ngFor="let gender of genderOptions"
+                                [value]="gender">{{gender}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+            </article>
+            <article formGroupName="location">
+                <p>Location</p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Città</mat-label>
+                    <input type="text" matInput formControlName="citta" placeholder="Città" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Cap</mat-label>
+                    <input type="text" matInput formControlName="cap" placeholder="Cap" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Indirizzo</mat-label>
+                    <input type="text" matInput formControlName="indirizzo" placeholder="Indirizzo" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Provincia</mat-label>
+                    <input type="text" matInput formControlName="provincia" placeholder="Provincia" />
+                </mat-form-field>
+            </article>
+            <div style="background-color:white; width: fit-content; padding-right: 10px; border-radius: 10px;">
+                <mat-checkbox formControlName="hasPets">Animali domestici?</mat-checkbox>
             </div>
+        </section>
 
+        <div class="mb-3 mt-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <p>Hobbies</p>
+                <button type="button" mat-stroked-button color="primary"
+                    style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
+                    (click)="addHobby()"><i class="fa-solid fa-plus"></i> add hobby</button>
+            </div>
+            <div [formGroup]="group" *ngFor="let group of hobbies.controls; let index= index"
+                class="d-flex flex-column mb-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput formControlName="name" placeholder="Nome" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Icona</mat-label>
+                    <input type="text" matInput formControlName="icon" placeholder="Icona" />
+                </mat-form-field>
+            </div>
         </div>
-    </div>
 
-    <div class="d-flex justify-content-center">
-        <button type="button" mat-stroked-button color="primary"
-            style="background-color: orange; font-size: 30px; padding: 30px; border: 2px solid orangered;" (click)="saveChanges()">SAVE</button>
-    </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <p>Lingue</p>
+                <button type="button" mat-stroked-button color="primary"
+                    style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
+                    (click)="addLanguage()">
+                    <i class="fa-solid fa-plus"></i>add hobby</button>
+            </div>
+            <div [formGroup]="group" *ngFor="let group of lingue.controls; let index= index"
+                class="d-flex flex-column mb-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput formControlName="name" placeholder="Nome" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Icona</mat-label>
+                    <input type="text" matInput formControlName="icon" placeholder="Icona" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <p>Esperienze</p>
+                <button type="button" mat-stroked-button color="primary"
+                    style="background-color: rgba(109, 208, 244, 0.813); border: 2px solid blue;"
+                    (click)="addExperience()">
+                    <i class="fa-solid fa-plus"></i>add experience</button>
+            </div>
+            <div [formGroup]="group" *ngFor="let group of esperienze.controls;" class="d-flex flex-column">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput formControlName="nome" placeholder="Nome" />
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Descrizione</mat-label>
+                    <textarea matNativeControl formControlName="descrizione" placeholder="Descrizione"></textarea>
+                </mat-form-field>
+
+                <div class="d-flex justify-content-between">
+                    <div>
+                      <mat-form-field class="w-100">
+                        <mat-label>Inizio</mat-label>
+                        <input matInput [matDatepicker]="datepicker_inizio" formControlName="inizio" />
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="datepicker_inizio"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker_inizio></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field class="w-100">
+                        <mat-label>Fine</mat-label>
+                        <input matInput [matDatepicker]="datepicker_fine" formControlName="fine" />
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="datepicker_fine"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker_fine></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                <button type="button" mat-stroked-button color="primary"
+                    style="background-color: rgba(109, 208, 244, 0.813); margin-bottom: 10px;  border: 2px solid blue;"
+                    (click)="addTag(group)"><i class="fa-solid fa-plus"></i> add tag</button>
+                <div formArrayName="tags"
+                    style="display: grid; column-gap: 1rem; grid-template-columns: repeat(3, 1fr)">
+                    <mat-form-field appearance="fill"*ngFor="let tagControl of group.controls.tags.controls; let index = index" >
+                        <mat-label>Tags</mat-label>
+                        <input type="text" name="tag_{{ index }}" matInput placeholder="tag" [formControl]="tagControl" />
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" mat-stroked-button color="primary"
+                style="background-color: orange; font-size: 30px; padding: 30px; border: 2px solid orangered;">SAVE</button>
+        </div>
+    </form>
 </div>

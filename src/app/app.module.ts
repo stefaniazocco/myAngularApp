@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -20,6 +21,7 @@ import { Student } from './models/student';
 import { STUDENTS } from './data/students';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ReactiveStudentFormComponent } from './components/reactive-student-form/reactive-student-form.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { ReactiveStudentFormComponent } from './components/reactive-student-form
     MatButtonModule,
     FormsModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSelectModule,
     MatChipsModule,
     ReactiveFormsModule

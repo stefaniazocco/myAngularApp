@@ -1,24 +1,28 @@
 <mat-sidenav-container class="w-100">
 
     <mat-sidenav #sidenav mode="over" class="p-4" style="width: 50vw ; background-color: rgba(50, 50, 50, 0.724);">
-        <app-student-form  *ngIf="selectedStudent"
+        <!-- <app-student-form  *ngIf="selectedStudent"
             [student]="selectedStudent" 
             [mode]= "mode"
             (editStudent)="handleEditStudent($event); sidenav.close()" 
             (addStudent)="handleAddStudent($event); sidenav.close()"
-        ></app-student-form>
+        ></app-student-form> -->
+        <app-reactive-student-form *ngIf="selectedStudent" [student]="selectedStudent" [mode]="mode"
+            (editStudent)="handleEditStudent($event); sidenav.close()"
+            (addStudent)="handleAddStudent($event); sidenav.close()">
+        </app-reactive-student-form>
     </mat-sidenav>
 
     <mat-sidenav-content class="p-3 bg-dark d-flex flex-column">
-        <h1 [innerText]="title" style="display: block; margin-bottom: 2rem; color: white; align-self: center; margin-top: 20px; font-size: 50px;"></h1>
-        <button type="button" (click)=" addStudent(); sidenav.open()" mat-stroked-button style="width: fit-content; margin: 30px; background-color: rgb(9, 199, 237);">ADD STUDENT</button>
+        <h1 [innerText]="title"
+            style="display: block; margin-bottom: 2rem; color: white; align-self: center; margin-top: 20px; font-size: 50px;">
+        </h1>
+        <button type="button" (click)=" addStudent(); sidenav.open()" mat-stroked-button
+            style="width: fit-content; margin: 30px; background-color: rgb(9, 199, 237);">ADD STUDENT</button>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0px 20px; margin: 20px">
-            <app-student 
-                *ngFor="let student of students; let odd = odd; let even = even; let index= index" 
-                [student]="student"
-                [bgColor]="odd? 'darkturquoise' : 'aquamarine'" 
-                (editStudent)="editStudent(student); sidenav.open()"
-            ></app-student>
+            <app-student *ngFor="let student of students; let odd = odd; let even = even; let index= index"
+                [student]="student" [bgColor]="odd? 'darkturquoise' : 'aquamarine'"
+                (editStudent)="editStudent(student); sidenav.open()"></app-student>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

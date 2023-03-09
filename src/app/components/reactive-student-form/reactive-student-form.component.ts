@@ -1,96 +1,120 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { group } from '@angular/animations';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from 'src/app/models/student';
 import { StudentForm, StudentFormExperience, StudentFormGeneralInformation, StudentFormGeneralInformationGender, StudentFormGeneralInformationLocation, StudentFormHobby, StudentFormLanguage } from 'src/app/models/student-form.type';
-import { StudentExperience } from 'src/app/models/studentExperience';
 
 @Component({
   selector: 'app-reactive-student-form',
   templateUrl: './reactive-student-form.component.html',
   styleUrls: ['./reactive-student-form.component.scss']
 })
-export class ReactiveStudentFormComponent {
-  @Input() student: Student | undefined;
+
+export class ReactiveStudentFormComponent implements OnChanges{
+
+  @Input() student!: Student;
   @Input() mode: 'edit' | 'add' = 'edit';
   @Output() addStudent: EventEmitter<Student> = new EventEmitter<Student>();
   @Output() editStudent: EventEmitter<Student> = new EventEmitter<Student>();
   studentViewModel: Student = new Student();
+  genderOptions = ['M', 'F']
 
-  form: FormGroup<StudentForm> = new FormGroup<StudentForm>({
-    general_information: new FormGroup<StudentFormGeneralInformation>({
-      nome: new FormControl<string>('', { nonNullable: true }),
-      cognome: new FormControl<string>('', { nonNullable: true }),
-      eta: new FormControl<number>(19, { nonNullable: true }),
-      genere: new FormControl<StudentFormGeneralInformationGender>('', { nonNullable: true }),
-      location: new FormGroup<StudentFormGeneralInformationLocation>({
-        indirzzo: new FormControl<string>('', { nonNullable: true }),
-        citta: new FormControl<string>('', { nonNullable: true }),
-        provincia: new FormControl<string>('', { nonNullable: true }),
-        cap: new FormControl<string>('', { nonNullable: true }),
-      }),
-      hasPets: new FormControl<boolean>(false, { nonNullable: true }),
-    }),
-    hobbies: new FormArray<FormGroup<StudentFormHobby>>([
-      new FormGroup({
-        name: new FormControl<string>('', { nonNullable: true }),
-        icon: new FormControl<string>('', { nonNullable: true })
-      }),
-    ]),
-    lingue: new FormArray<FormGroup<StudentFormLanguage>>([
-      new FormGroup({ name: new FormControl<string>('', { nonNullable: true }), icon: new FormControl<string>('', { nonNullable: true }) })
-    ]),
-    esperienze: new FormArray<FormGroup<StudentFormExperience>>([
-      new FormGroup({
-        nome: new FormControl<string>('', { nonNullable: true }),
-        descrizione: new FormControl<string>('', { nonNullable: true }),
-        inizio: new FormControl<Date>(new Date(), { nonNullable: true }),
-        fine: new FormControl<Date>(new Date(), { nonNullable: true }),
-        tags: new FormArray<FormControl<string>>([new FormControl<string>('', { nonNullable: true })])
-      })
-    ]),
-  });
+  form!: FormGroup<StudentForm>;
 
-  addHobby():void {
-    if(this.studentViewModel.hobbies.some(hobby =>!hobby.name)){
-      return;
-    }
-    this.studentViewModel!.hobbies.push({ name: '', icon: '' })
+
+  get hobbies(): FormArray<FormGroup<StudentFormHobby>> {
+    return this.form.get('hobbies') as FormArray<FormGroup<StudentFormHobby>>
   }
-  addLanguage():void {
-    if(this.studentViewModel.lingue.some(lang =>!lang.name)){
-      return;
-    }
-    this.studentViewModel!.lingue.push({ name: '', icon: '' })
+  get lingue(): FormArray<FormGroup<StudentFormLanguage>> {
+    return this.form.get('lingue') as FormArray<FormGroup<StudentFormLanguage>>
   }
-  addExperience():void {
-    if(this.studentViewModel.esperienze.some(esp =>!esp.nome)){
-      return;
-    }
-    this.studentViewModel!.esperienze.push({ nome: '', descrizione: '', inizio: new Date(''), fine: new Date(''), tags: [] })
+  get esperienze(): FormArray<FormGroup<StudentFormExperience>> {
+    return this.form.get('esperienze') as FormArray<FormGroup<StudentFormExperience>>
   }
-  addTag(exp: StudentExperience) {
-    if(exp.tags.some(tag=>!tag)){
-      return;
+
+  ngOnChanges(changes: SimpleChanges): void{
+    if(changes['student'].currentValue){
+      this.form = this.createStudentForm(changes['student'].currentValue);
     }
-    exp.tags.push("")
+  }
+
+  addHobby(): void {
+    this.hobbies.push(this.hobbyFactory());
+  }
+  addLanguage(): void {
+    this.lingue.push(this.languageFactory());
+  }
+  addExperience(): void {
+    this.esperienze.push(this.experienceFactory());
+  }
+  addTag(group: FormGroup<StudentFormExperience>): void {
+    group.controls.tags.push(this.tagFactory());
   }
   saveChanges(): void {
-    this.studentViewModel = {
-      ... this.studentViewModel,
-      hobbies: this.studentViewModel!.hobbies.filter(hobby => !!hobby.name),
-      lingue: this.studentViewModel!.lingue.filter(language => !!language.name),
-      esperienze: this.studentViewModel!.esperienze.filter(exp => !!exp.nome).map(exp=>({
-        ...exp,
-        tags:exp.tags.filter(tag=> !!tag)
-      }))
-    } as Student
+    console.log(this.form.value)
+    const { general_information, hobbies, lingue, esperienze } = this.form.value as Pick<Student, 'hobbies' | 'lingue' | 'esperienze'> & { general_information: Omit<Student, 'hobbies' | 'lingue' | 'esperienze'>; }
+    const student: Student = new Student({
+      ...general_information,
+      hobbies,
+      lingue,
+      esperienze
+    })
     if (this.mode === 'add') {
-      this.addStudent.emit(this.studentViewModel)
+      this.addStudent.emit(student)
     } else {
-      this.editStudent.emit(this.studentViewModel)
+      this.editStudent.emit(student)
     }
   }
   tagsTrackByFn(ind: number) {
     return ind;
   }
+  private hobbyFactory(): FormGroup<StudentFormHobby> {
+    return new FormGroup({
+      name: new FormControl<string>('', { nonNullable: true }),
+      icon: new FormControl<string>('', { nonNullable: true })
+    })
+  }
+  private languageFactory(): FormGroup<StudentFormLanguage> {
+    return new FormGroup({
+      name: new FormControl<string>('', { nonNullable: true }),
+      icon: new FormControl<string>('', { nonNullable: true })
+    })
+  }
+
+  private experienceFactory(): FormGroup<StudentFormExperience> {
+    return new FormGroup({
+      nome: new FormControl<string>('', { nonNullable: true }),
+      descrizione: new FormControl<string>('', { nonNullable: true }),
+      inizio: new FormControl<Date>(new Date(), { nonNullable: true }),
+      fine: new FormControl<Date>(new Date(), { nonNullable: true }),
+      tags: new FormArray<FormControl<string>>([new FormControl<string>('', { nonNullable: true })])
+    })
+  }
+  private tagFactory(): FormControl<string> {
+    return new FormControl<string>('', { nonNullable: true })
+  }
+
+  private createStudentForm(student: Student): FormGroup<StudentForm> {
+    return new FormGroup<StudentForm>({
+      general_information: new FormGroup<StudentFormGeneralInformation>({
+        nome: new FormControl<string>(student.nome, { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }), // required
+        cognome: new FormControl<string>(student.cognome, { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }), // required
+        eta: new FormControl<number>(student.eta, { nonNullable: true, validators: [Validators.required, Validators.min(19), Validators.max(99)] }), // required
+        genere: new FormControl<StudentFormGeneralInformationGender>(student.genere, { nonNullable: true, validators: [Validators.required] }), // required
+        location: new FormGroup<StudentFormGeneralInformationLocation>({
+          // required
+          indirizzo: new FormControl<string>(student.location.indirizzo, { nonNullable: true }),
+          citta: new FormControl<string>(student.location.citta, { nonNullable: true }),
+          provincia: new FormControl<string>(student.location.provincia, { nonNullable: true }),
+          cap: new FormControl<string>(student.location.cap, { nonNullable: true }),
+        }),
+        hasPets: new FormControl<boolean>(student.hasPets, { nonNullable: true }),
+      }),
+      hobbies: new FormArray<FormGroup<StudentFormHobby>>([this.hobbyFactory()]),
+      lingue: new FormArray<FormGroup<StudentFormLanguage>>([this.languageFactory()]),
+      esperienze: new FormArray<FormGroup<StudentFormExperience>>([this.experienceFactory()]),
+    });
+  }
+
+
 }
