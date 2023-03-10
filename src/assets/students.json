@@ -1,0 +1,244 @@
+[
+    {
+      "nome": "Dario",
+      "cognome": "Di Salvo",
+      "genere": "M",
+      "eta": 28,
+      "hobbies": [
+        { "name": "Sport", "icon": "medal" },
+        { "name": "Cinema", "icon": "film" },
+        { "name": "Libri", "icon": "book" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" },
+        { "name": "Spagnolo", "icon": "sun" }
+      ]
+    },
+    {
+      "nome": "Giorgio",
+      "cognome": "Delle Monache",
+      "genere": "M",
+      "eta": 24,
+      "hobbies": [
+        { "name": "Calcio", "icon": "futbol" },
+        { "name": "Basket", "icon": "basketball" },
+        { "name": "Criptovalute", "icon": "fa- brands fa - bitcoin" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Francesco",
+      "cognome": "Grasso",
+      "genere": "M",
+      "eta": 30,
+      "hobbies": [
+        { "name": "palestra", "icon": "fa-duotone fa-dumbbell" },
+        { "name": "Gaming", "icon": "gamepad " },
+        { "name": "Cibo", "icon": "pizza-slice " }
+      ],
+      "hasPets": true,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Mario",
+      "cognome": "Sabatini",
+      "genere": "M",
+      "eta": 24,
+      "hobbies": [
+        { "name": "Giocare", "icon": "gamepad" },
+        { "name": "Suonare", "icon": "music" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "italiano", "icon": "pizza-slice" },
+        { "name": "inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Pasquale",
+      "cognome": "Sabatino",
+      "genere": "M",
+      "eta": 20,
+      "hobbies": [
+        { "name": "Gaming", "icon": "gamepad" },
+        { "name": "Boxe", "icon": "boxing-glove" },
+        { "name": "Viaggiare", "icon": "plane" }
+      ],
+      "hasPets": true,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Stefania",
+      "cognome": "Zocco",
+      "genere": "F",
+      "eta": 29,
+      "hobbies": [
+        { "name": "Viaggiare", "icon": "plane" },
+        { "name": "Cucina", "icon": "utensils" },
+        { "name": "Pittura", "icon": "palette" },
+        { "name": "Libri", "icon": "book" },
+        { "name": "Gaming", "icon": "gamepad" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" },
+        { "name": "Cinese", "icon": "torii-gate" },
+        { "name": "Spagnolo", "icon": "sun" },
+        { "name": "Francese", "icon": "wine-glass" }
+      ]
+    },
+    {
+      "nome": "Francesco",
+      "cognome": "Solito",
+      "genere": "M",
+      "eta": 23,
+      "hobbies": [
+        { "name": "tuning", "icon": "fa-sharp car-wrench" },
+        { "name": "gaming", "icon": "alien-8bit" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Mattia",
+      "cognome": "Gioia",
+      "genere": "M",
+      "eta": 30,
+      "hobbies": [
+        { "name": "Musica", "icon": "music" },
+        { "name": "Cucina", "icon": "mortar-pestle" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Lorenzo",
+      "cognome": "Decandia",
+      "genere": "M",
+      "eta": 33,
+      "hobbies": [
+        { "name": "Gaming", "icon": "gamepad" },
+        { "name": "Giardinaggio", "icon": "seedling" }
+      ],
+      "hasPets": true,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Chiara",
+      "cognome": "Pala",
+      "genere": "F",
+      "eta": 23,
+      "hobbies": [
+        { "name": "Viaggiare", "icon": "plane" },
+        { "name": "Film", "icon": "film" }
+      ],
+      "hasPets": true,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Nazario",
+      "cognome": "De Luca",
+      "genere": "M",
+      "eta": 26,
+      "hobbies": [
+        { "name": "Musica", "icon": "music" },
+        { "name": "Gaming", "icon": "gamepad " },
+        { "name": "Viaggi", "icon": "plane" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Andrea",
+      "cognome": "Sarzi Sartori",
+      "genere": "M",
+      "eta": 27,
+      "hobbies": [
+        { "name": "Musica", "icon": "music" },
+        { "name": "Gaming", "icon": "gamepad " },
+        { "name": "Cooking", "icon": "utensils" }
+      ],
+      "hasPets": true,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Dario",
+      "cognome": "Mucci",
+      "eta": 24,
+      "genere": "M",
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ],
+      "hasPets": true,
+      "hobbies": [
+        { "name": "palestra", "icon": "fa-duotone fa-dumbbell" },
+        { "name": "Gaming", "icon": "fa-sharp gamepad" },
+        { "name": "leggere", "icon": "book" }
+      ]
+    },
+    {
+      "nome": "Ali",
+      "cognome": "Alamfard",
+      "genere": "M",
+      "eta": 29,
+      "hobbies": [
+        { "name": "Sport", "icon": "medal" },
+        { "name": "Cinema", "icon": "film" },
+        { "name": "Musica", "icon": "music" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" }
+      ]
+    },
+    {
+      "nome": "Michele",
+      "cognome": "Kusmierz",
+      "genere": "M",
+      "eta": 21,
+      "hobbies": [
+        { "name": "Coding", "icon": "plane" },
+        { "name": "Jogging", "icon": "film" }
+      ],
+      "hasPets": false,
+      "lingue": [
+        { "name": "Italiano", "icon": "pizza-slice" },
+        { "name": "Inglese", "icon": "flag-usa" },
+        { "name": "Polacco", "icon": "flag-usa" }
+      ]
+    }
+  ]
+  

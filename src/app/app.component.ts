@@ -3,6 +3,7 @@ import { STUDENTS } from './data/students';
 import { Hobby } from './models/hobby';
 import { Language } from './models/language';
 import { IStudent, Student } from './models/student';
+import { StudentHttpService } from './providers/services/student-http.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,10 @@ export class AppComponent {
   students = structuredClone(STUDENTS);
   selectedStudent: Student |undefined;
   mode: 'edit' | 'add' = 'edit'
+
+  constructor(private readonly studentHttpService: StudentHttpService){
+    this.studentHttpService.getStudents();
+  }
 
 
   addStudent():void{

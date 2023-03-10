@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from 'src/app/models/student';
 import { StudentForm, StudentFormExperience, StudentFormGeneralInformation, StudentFormGeneralInformationGender, StudentFormGeneralInformationLocation, StudentFormHobby, StudentFormLanguage } from 'src/app/models/student-form.type';
+import { StudentFormViewService } from 'src/app/providers/services/student-form-view.service';
 
 @Component({
   selector: 'app-reactive-student-form',
@@ -17,10 +18,9 @@ export class ReactiveStudentFormComponent implements OnChanges{
   @Output() addStudent: EventEmitter<Student> = new EventEmitter<Student>();
   @Output() editStudent: EventEmitter<Student> = new EventEmitter<Student>();
   studentViewModel: Student = new Student();
-  genderOptions = ['M', 'F']
+  genderOptions: Array<StudentFormGeneralInformationGender>;
 
   form!: FormGroup<StudentForm>;
-
 
   get hobbies(): FormArray<FormGroup<StudentFormHobby>> {
     return this.form.get('hobbies') as FormArray<FormGroup<StudentFormHobby>>
@@ -32,9 +32,13 @@ export class ReactiveStudentFormComponent implements OnChanges{
     return this.form.get('esperienze') as FormArray<FormGroup<StudentFormExperience>>
   }
 
+  constructor(private readonly viewService: StudentFormViewService){
+    this.genderOptions= this.viewService.genders();
+  }
+  
   ngOnChanges(changes: SimpleChanges): void{
     if(changes['student'].currentValue){
-      this.form = this.createStudentForm(changes['student'].currentValue);
+      this.form = this.viewService.getForm(changes['student'].currentValue);
     }
   }
 
@@ -65,9 +69,10 @@ export class ReactiveStudentFormComponent implements OnChanges{
       this.editStudent.emit(student)
     }
   }
-  tagsTrackByFn(ind: number) {
-    return ind;
-  }
+
+  // tagsTrackByFn(ind: number) {
+  //   return ind;
+  // }
   private hobbyFactory(): FormGroup<StudentFormHobby> {
     return new FormGroup({
       name: new FormControl<string>('', { nonNullable: true }),
@@ -92,28 +97,6 @@ export class ReactiveStudentFormComponent implements OnChanges{
   }
   private tagFactory(): FormControl<string> {
     return new FormControl<string>('', { nonNullable: true })
-  }
-
-  private createStudentForm(student: Student): FormGroup<StudentForm> {
-    return new FormGroup<StudentForm>({
-      general_information: new FormGroup<StudentFormGeneralInformation>({
-        nome: new FormControl<string>(student.nome, { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }), // required
-        cognome: new FormControl<string>(student.cognome, { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }), // required
-        eta: new FormControl<number>(student.eta, { nonNullable: true, validators: [Validators.required, Validators.min(19), Validators.max(99)] }), // required
-        genere: new FormControl<StudentFormGeneralInformationGender>(student.genere, { nonNullable: true, validators: [Validators.required] }), // required
-        location: new FormGroup<StudentFormGeneralInformationLocation>({
-          // required
-          indirizzo: new FormControl<string>(student.location.indirizzo, { nonNullable: true }),
-          citta: new FormControl<string>(student.location.citta, { nonNullable: true }),
-          provincia: new FormControl<string>(student.location.provincia, { nonNullable: true }),
-          cap: new FormControl<string>(student.location.cap, { nonNullable: true }),
-        }),
-        hasPets: new FormControl<boolean>(student.hasPets, { nonNullable: true }),
-      }),
-      hobbies: new FormArray<FormGroup<StudentFormHobby>>([this.hobbyFactory()]),
-      lingue: new FormArray<FormGroup<StudentFormLanguage>>([this.languageFactory()]),
-      esperienze: new FormArray<FormGroup<StudentFormExperience>>([this.experienceFactory()]),
-    });
   }
 
 

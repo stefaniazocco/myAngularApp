@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgModule } from '@angular/core';
+import {HttpClientModule }from'@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,7 +49,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     MatSelectModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
